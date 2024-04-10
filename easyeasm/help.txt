@@ -1,0 +1,22 @@
+REQUIREMENTS: 
+- Jq is needed to run the Nuclei Scanner
+- config.yml must be inserted into the running folder
+
+FLAGS:
+- h:  help 
+- i: interactive mode, runtime selection and configuration of the config.yml file
+- p: periodic mode, frequency must be adjusted inside the config.yml file
+- t int: set the number of threads for the run (std value is 100, can be changed inside config.yml file)
+- rl int: set the number of max reqeusts per second (std value is 150, can be changed inside config.yml file)
+
+CONFIG FILE EXAMPLE:
+runConfig:
+    domains:
+        - domain.com
+    slack: NONE -- not provided
+    discord: discord webhook url
+    runType: fast -- valid modes are fast and complete
+    activeWordList: subdomainWordlist.txt
+    activeThreads: 100
+    requestsSecond: 150
+    periodicDays: 1

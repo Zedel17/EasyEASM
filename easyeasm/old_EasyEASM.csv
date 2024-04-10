@@ -1,0 +1,703 @@
+timestamp,asn,cdn_name,sni,-,location,webserver,content_type,final_url,header,raw_header,chain_status_codes,a,tech,chain
+2024-04-10 12:06:34.470541 +0200 CEST m=+1.626180876,<nil>,,,"HTTP/1.1 200 OK
+Connection: close
+Transfer-Encoding: chunked
+Cache-Control: max-age=0, private, must-revalidate
+Content-Type: text/html; charset=utf-8
+Date: Wed, 10 Apr 2024 10:06:34 GMT
+Etag: W/""270e011f30e7689fcbc4c45e3205c23c""
+Server: nginx/1.10.3 (Ubuntu)
+Set-Cookie: _schoople_pages_session=MTVjUjNJY294Q0JldGc5SmZjeUxyODFaNjgyelQrYzNGWXNmU3EybUF0T0ZUQjdUOU9WSjZGRWt5S1BJZStRakpYaDk4ck0wVkJqRXBXS1htZG9pbHVubU1aam9wNk03QmxZdjhMMlNqTFJUYk01ckVCYW0wZ2p1VDJvMW51S2ptY0pGaFhiMXluRjM0NkphQ2g2em93PT0tLUluSmtpeERCSzRRVzhQK2pad2xpZ0E9PQ%3D%3D--4b50c959037db2630a62534d9efa2ca7a4b1d548; path=/; HttpOnly
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-Request-Id: ecce6d12-002d-424f-9dd1-e4bc31efca3e
+X-Runtime: 0.005543
+X-Xss-Protection: 1; mode=block
+
+27b8
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'>
+<meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+<title>Schoople | Parents save. Schools raise.</title>
+<meta content='Schoople provides services for schools and their parents saving time and money whilst raising money for the school.' name='description'>
+<meta name='keywords'>
+<link rel=""stylesheet"" media=""screen"" href=""https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"" />
+<link rel=""stylesheet"" media=""screen"" href=""/assets/schoople-1229694b028968d74bf93726bc49f0094a77016cb4c244fa217f14b7e709df64.css"" />
+
+<meta name=""csrf-param"" content=""authenticity_token"" />
+<meta name=""csrf-token"" content=""0u48jf0H8okmHlLKrZxP9lmjnRb4UF7X3mvs5lylbSSL6gt0eDQP1PRQod62Rje9p22D5snqVWCaail5/U/wzA=="" />
+</head>
+<body class='pages'>
+<div class='teaser'>
+<header role='banner'>
+<h1 class='logo'>
+<a href=""/"">Schoople</a>
+</h1>
+<nav role='navigation'>
+<div id='toolbox'>
+<ul class='actions'>
+<li class='chat'>
+<div class='livechat_button' data-id='60b79d6b53'>
+<a href='http://www.livechatinc.com/'>Chat now</a>
+</div>
+</li>
+</ul>
+</div>
+</nav>
+</header>
+<div class='teaser-content'>
+<h1>Parents save. Schools raise.</h1>
+<h2>Innovative, online school & parent services by Schoople.</h2>
+</div>
+</div>
+
+<div id='home-stats'>
+<div class='wrap'>
+<div class='app-stats'>
+<dl class='stats-schools'>
+<dt>
+<strong>8,783</strong>
+</dt>
+<dd>
+schools registered
+</dd>
+</dl>
+<dl class='stats-parents'>
+<dt>
+<strong>243,896</strong>
+</dt>
+<dd>
+parents assisted
+</dd>
+</dl>
+<dl class='stats-funds'>
+<dt>
+<strong>£623,732</strong>
+</dt>
+<dd>
+school funds raised
+</dd>
+</dl>
+<a href=""#map""><img id=""seemapbelow"" src=""/assets/schoople/seemap-5c0c65448d5e39d941daea058492a883499379b5cc1c4cbbae5bf92e60162ade.png"" alt=""Seemap"" />
+</a></div>
+</div>
+<div class='signup'>
+<a class=""button singup-button"" href=""mailto:john@schoople.com"">Contact us</a>
+</div>
+</div>
+
+<div class='wrap'>
+<div id='home-menu'>
+<ul class='tabs'>
+<li class='active'>
+<a href='#'>About</a>
+</li>
+<li>
+<a href='#'>Feedback</a>
+</li>
+</ul>
+<div class='download'>
+<span class='fa fa-download'></span>
+<a href=""/schoople_about.pdf"">Download summary</a>
+</div>
+</div>
+<a id='apps'></a>
+<div id='home-apps'>
+<div class='section section-about wrap'>
+<header class='section-header'>
+<h2>
+Schoople provides a number of useful services
+<br>
+that save time and money whilst raising money for the school.
+</h2>
+</header>
+<div class='parentmessage-about about'>
+<div class='news-expanded'>
+<div class='description'>
+<div class='about-logo-img'>
+<img class=""about-logo"" src=""/assets/schoople/about/about-pm-logo-9e417e1fc1435cbadfc242fd4342b19076e41e22b6fc8da2680173342b640b86.png"" alt=""About pm logo"" />
+</div>
+<div class='about-heading'>
+Improving school/parent communications
+</div>
+<div class='about-text'>
+ParentMessage is an online message board for schools. Messages can be filtered by year groups and automatic notifications sent to parents. Parents can comment on posts, turning the message board into a useful feedback forum.
+</div>
+</div>
+</div>
+</div>
+<div class='fundwider-about about'>
+<div class='news-expanded'>
+<div class='description'>
+<div class='about-logo-img'>
+<img class=""about-logo"" src=""/assets/schoople/about/about-fw-logo-0b30640cdaddf1c49cbe872a10ffb00f7d41754a78bedf70432393db33d5392d.png"" alt=""About fw logo"" />
+</div>
+<div class='about-heading'>
+Taking school fundraising further
+</div>
+<div class='about-text'>
+In association with WorldPay, FundWider gives school fundraising projects a specific purpose, target and deadline. It provides an online showcase, enabling donations from a wider audience including local businesses.
+</div>
+<a class='youtube-play' href='http://youtu.be/GIBezvOyoeU?width=1280&amp;height=720' prettyp rel='prettyPhoto'>
+Watch the FundWider video
+<span class='fa fa-play-circle-o'></span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<a id='testimonials'></a>
+<div id='home-testimonials'>
+<div class='section section-testimonials wrap'>
+<header class='section-header'>
+<h2>But don't take our word for it...</h2>
+<div class='carousel slide' data-interval='10555' data-ride='carousel' id='pm-carousel'>
+<div class='carousel-inner'>
+<div class='item active'>
+<div class='about-item about-pm pm-2 item-2'>
+<div class='about-inner'>
+<div class='about-avatar'>
+<img src=""/assets/schoople/about/pm-par-avatar-92b15dc599dd68b4911e22439945e7c19b3d92ebeb47b6ee90964732daee4fcd.png"" alt=""Pm par avatar"" />
+</div>
+<div class='about-person about-parent'>
+<div class='about-name'>
+Natalie Halsall, Parent
+</div>
+<div class='about-school'>
+Wayland Academy
+</div>
+<div class='about-location'>
+Norfolk
+</div>
+</div>
+<blockquote>
+""I receive notifications about posts that are relevant to me without having to trawl through every message - brilliant""
+</blockquote>
+</div>
+</div>
+</div>
+<div class='item'>
+<div class='about-item about-pm pm-3 item-3'>
+<div class='about-inner'>
+<div class='about-avatar'>
+<img src=""/assets/schoople/about/pm-admin-avatar-9af5e7e6d39095b58b3f86f3b42be1765b313d6d2220288c49834d5f00cdb0a8.png"" alt=""Pm admin avatar"" />
+</div>
+<div class='about-person about-school-admin'>
+<div class='about-name'>
+Janet Pascoe, Headteacher
+</div>
+<div class='about-school'>
+St Buryan Academy
+</div>
+<div class='about-location'>
+Cornwall
+</div>
+</div>
+<blockquote>
+""It’s such an easy way to get messages to our parents - ParentMessage automatically notifies parents about new posts. The feedback facility saves loads of time spent emailing back and forth with parents""
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+<a class='carousel-control left' data-slide='prev' href='#pm-carousel'>&lsaquo;</a>
+<a class='carousel-control right' data-slide='next' href='#pm-carousel'>&rsaquo;</a>
+<ol class='carousel-indicators'>
+<li class='active' data-slide-to='0' data-target='#pm-carousel'></li>
+<li data-slide-to='1' data-target='#pm-carousel'></li>
+</ol>
+</div>
+<div class='carousel slide' data-interval='14333' data-ride='carousel' id='fw-carousel'>
+<div class='carousel-inner'>
+<div class='item active'>
+<div class='about-item about-fw fw-2 item-2'>
+<div class='about-inner'>
+<div class='about-avatar'>
+<img src=""/assets/schoople/about/fw-par-avatar-000a5c36a7dc90a511ca6ede4d11fcb1b5abfeb4386b7b48b937294b67305656.png"" alt=""Fw par avatar"" />
+</div>
+<div class='about-person about-parent'>
+<div class='about-name'>
+Rae Lowe, Business Manager
+</div>
+<div class='about-school'>
+West Newcastle Academy
+</div>
+<div class='about-location'>
+Newcastle upon Tyne
+</div>
+</div>
+<blockquote>
+""Local businesses donated online and we exceeded our target.""
+</blockquote>
+</div>
+</div>
+</div>
+<div class='item'>
+<div class='about-item about-fw fw-3 item-3'>
+<div class='about-inner'>
+<div class='about-avatar'>
+<img src=""/assets/schoople/about/fw-admin-avatar-eedc1655cada1c4ec3edc77d40df7f5e3a3b7037b2952d2b2ebe457cde5d8240.png"" alt=""Fw admin avatar"" />
+</div>
+<div class='about-person about-school-admin'>
+<div class='about-name'>
+James Singh, School Fundraiser
+</div>
+<div class='about-school'>
+William Bellamy Primary School
+</div>
+<div class='about-location'>
+Essex
+</div>
+</div>
+<blockquote>
+""The site had everything we needed to spread the word and we raised an incredible £2,500 in just one term.""
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+<a class='carousel-control left' data-slide='prev' href='#fw-carousel'>&lsaquo;</a>
+<a class='carousel-control right' data-slide='next' href='#fw-carousel'>&rsaquo;</a>
+<ol class='carousel-indicators'>
+<li class='active' data-slide-to='0' data-target='#fw-carousel'></li>
+<li data-slide-to='1' data-target='#fw-carousel'></li>
+</ol>
+</div>
+</header>
+</div>
+<div class='signup'>
+<a class=""button signup-button"" href="""">Register now</a>
+</div>
+</div>
+
+</div>
+
+
+
+<div id='footer' role='footer'>
+<div class='wrap'>
+<div class='info'>
+<div class='column copyright'>
+&copy;
+<a href=""https://schoople.com"">2014 Schoople Ltd</a>
+</div>
+<div class='column'>
+<a target=""_blank"" href=""/terms"">Terms</a>
+</div>
+<div class='column'>
+<a target=""_blank"" href=""/privacy"">Privacy</a>
+</div>
+</div>
+<div class='social'>
+<div class='column'>
+<iframe allowtransparency='true' class='fb' frameborder='0' scrolling='no' src='//www.facebook.com/plugins/like.php?href=http%3A%2F%2Ffacebook.com%2Fschoople&amp;layout=button_count&amp;show_faces=false&amp;send=false&amp;width=100&amp;action=like&amp;colorscheme=light&amp;height=30' style='border:none; overflow:hidden; width:100px; height:30px;'></iframe>
+</div>
+<div class='column chat'>
+<div class='livechat_button' data-id='60b79d6b53'>
+<a href='http://www.livechatinc.com/'>Chat now!</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<script src=""/assets/schoople-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.js""></script>
+<script>
+  var _gaq = _gaq || [];
+  var pluginUrl =  '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+  _gaq.push(
+    ['_setAccount', 'UA-44213397-1'],
+    ['_setDomainName', 'schoople.com'],
+    ['_require', 'inpage_linkid', pluginUrl],
+    ['_trackPageview']
+  );
+  
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<script>
+  var __lc = {};
+  __lc.license = 3750911;
+  
+  (function() {
+    var lc = document.createElement('script'); lc.type = 'text/javascript'; lc.async = true;
+    lc.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'cdn.livechatinc.com/tracking.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(lc, s);
+  })();
+</script>
+
+<script>
+  var __lc = {};
+  __lc.license = 3750911;
+  
+  (function() {
+    var lc = document.createElement('script'); lc.type = 'text/javascript'; lc.async = true;
+    lc.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'cdn.livechatinc.com/tracking.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(lc, s);
+  })();
+</script>
+</body>
+</html>
+
+0
+
+",,nginx/1.10.3 (Ubuntu),text/html,,map[],,[],[54.229.140.24],[Nginx:1.10.3 Ruby Ruby on Rails Ubuntu],[]
+2024-04-10 12:06:34.475137 +0200 CEST m=+1.630777959,<nil>,,,"HTTP/1.1 200 OK
+Connection: close
+Transfer-Encoding: chunked
+Cache-Control: max-age=0, private, must-revalidate
+Content-Type: text/html; charset=utf-8
+Date: Wed, 10 Apr 2024 10:06:34 GMT
+Etag: W/""564e4e91040252b79bdd1101a34ce87c""
+Server: nginx/1.10.3 (Ubuntu)
+Set-Cookie: _schoople_pages_session=bDJWdS9sWURYV0dHRlNZbFdaWUZSdmMyMDhYd3dLdnVmQlZ2cFUrMlo5SHozU0ZQdXlSaVRTeUdqaDkyY3JlOUxhcjNDWnE1S0M2ZU9neThWL2NycGp0VGtHSDYvbWk2Ni9Id2IycWNIZ0gwVUl1U2dCdTA0RUZWUExpOHFTYUhjWHBhZmJGeGNJTjBUemc4aEJJMmNnPT0tLWVkQlNrcE56K0dXa3F5NEJWbTdlcmc9PQ%3D%3D--40e9030241ba6d51554bc966b3e33cff35e73c76; path=/; HttpOnly
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-Request-Id: 23257a28-8a09-4dd0-b280-bce1148fcc80
+X-Runtime: 0.005207
+X-Xss-Protection: 1; mode=block
+
+27b8
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'>
+<meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+<title>Schoople | Parents save. Schools raise.</title>
+<meta content='Schoople provides services for schools and their parents saving time and money whilst raising money for the school.' name='description'>
+<meta name='keywords'>
+<link rel=""stylesheet"" media=""screen"" href=""https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"" />
+<link rel=""stylesheet"" media=""screen"" href=""/assets/schoople-1229694b028968d74bf93726bc49f0094a77016cb4c244fa217f14b7e709df64.css"" />
+
+<meta name=""csrf-param"" content=""authenticity_token"" />
+<meta name=""csrf-token"" content=""K3ectf1rzmXePYkWiXft3HkssLo9+vrmWbK/8aMosX5JT1YlNZFebZCWWPGo8KJ4sqhsClkbvAQegpTlF+CNMQ=="" />
+</head>
+<body class='pages'>
+<div class='teaser'>
+<header role='banner'>
+<h1 class='logo'>
+<a href=""/"">Schoople</a>
+</h1>
+<nav role='navigation'>
+<div id='toolbox'>
+<ul class='actions'>
+<li class='chat'>
+<div class='livechat_button' data-id='60b79d6b53'>
+<a href='http://www.livechatinc.com/'>Chat now</a>
+</div>
+</li>
+</ul>
+</div>
+</nav>
+</header>
+<div class='teaser-content'>
+<h1>Parents save. Schools raise.</h1>
+<h2>Innovative, online school & parent services by Schoople.</h2>
+</div>
+</div>
+
+<div id='home-stats'>
+<div class='wrap'>
+<div class='app-stats'>
+<dl class='stats-schools'>
+<dt>
+<strong>8,783</strong>
+</dt>
+<dd>
+schools registered
+</dd>
+</dl>
+<dl class='stats-parents'>
+<dt>
+<strong>243,896</strong>
+</dt>
+<dd>
+parents assisted
+</dd>
+</dl>
+<dl class='stats-funds'>
+<dt>
+<strong>£623,732</strong>
+</dt>
+<dd>
+school funds raised
+</dd>
+</dl>
+<a href=""#map""><img id=""seemapbelow"" src=""/assets/schoople/seemap-5c0c65448d5e39d941daea058492a883499379b5cc1c4cbbae5bf92e60162ade.png"" alt=""Seemap"" />
+</a></div>
+</div>
+<div class='signup'>
+<a class=""button singup-button"" href=""mailto:john@schoople.com"">Contact us</a>
+</div>
+</div>
+
+<div class='wrap'>
+<div id='home-menu'>
+<ul class='tabs'>
+<li class='active'>
+<a href='#'>About</a>
+</li>
+<li>
+<a href='#'>Feedback</a>
+</li>
+</ul>
+<div class='download'>
+<span class='fa fa-download'></span>
+<a href=""/schoople_about.pdf"">Download summary</a>
+</div>
+</div>
+<a id='apps'></a>
+<div id='home-apps'>
+<div class='section section-about wrap'>
+<header class='section-header'>
+<h2>
+Schoople provides a number of useful services
+<br>
+that save time and money whilst raising money for the school.
+</h2>
+</header>
+<div class='parentmessage-about about'>
+<div class='news-expanded'>
+<div class='description'>
+<div class='about-logo-img'>
+<img class=""about-logo"" src=""/assets/schoople/about/about-pm-logo-9e417e1fc1435cbadfc242fd4342b19076e41e22b6fc8da2680173342b640b86.png"" alt=""About pm logo"" />
+</div>
+<div class='about-heading'>
+Improving school/parent communications
+</div>
+<div class='about-text'>
+ParentMessage is an online message board for schools. Messages can be filtered by year groups and automatic notifications sent to parents. Parents can comment on posts, turning the message board into a useful feedback forum.
+</div>
+</div>
+</div>
+</div>
+<div class='fundwider-about about'>
+<div class='news-expanded'>
+<div class='description'>
+<div class='about-logo-img'>
+<img class=""about-logo"" src=""/assets/schoople/about/about-fw-logo-0b30640cdaddf1c49cbe872a10ffb00f7d41754a78bedf70432393db33d5392d.png"" alt=""About fw logo"" />
+</div>
+<div class='about-heading'>
+Taking school fundraising further
+</div>
+<div class='about-text'>
+In association with WorldPay, FundWider gives school fundraising projects a specific purpose, target and deadline. It provides an online showcase, enabling donations from a wider audience including local businesses.
+</div>
+<a class='youtube-play' href='http://youtu.be/GIBezvOyoeU?width=1280&amp;height=720' prettyp rel='prettyPhoto'>
+Watch the FundWider video
+<span class='fa fa-play-circle-o'></span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<a id='testimonials'></a>
+<div id='home-testimonials'>
+<div class='section section-testimonials wrap'>
+<header class='section-header'>
+<h2>But don't take our word for it...</h2>
+<div class='carousel slide' data-interval='10555' data-ride='carousel' id='pm-carousel'>
+<div class='carousel-inner'>
+<div class='item active'>
+<div class='about-item about-pm pm-2 item-2'>
+<div class='about-inner'>
+<div class='about-avatar'>
+<img src=""/assets/schoople/about/pm-par-avatar-92b15dc599dd68b4911e22439945e7c19b3d92ebeb47b6ee90964732daee4fcd.png"" alt=""Pm par avatar"" />
+</div>
+<div class='about-person about-parent'>
+<div class='about-name'>
+Natalie Halsall, Parent
+</div>
+<div class='about-school'>
+Wayland Academy
+</div>
+<div class='about-location'>
+Norfolk
+</div>
+</div>
+<blockquote>
+""I receive notifications about posts that are relevant to me without having to trawl through every message - brilliant""
+</blockquote>
+</div>
+</div>
+</div>
+<div class='item'>
+<div class='about-item about-pm pm-3 item-3'>
+<div class='about-inner'>
+<div class='about-avatar'>
+<img src=""/assets/schoople/about/pm-admin-avatar-9af5e7e6d39095b58b3f86f3b42be1765b313d6d2220288c49834d5f00cdb0a8.png"" alt=""Pm admin avatar"" />
+</div>
+<div class='about-person about-school-admin'>
+<div class='about-name'>
+Janet Pascoe, Headteacher
+</div>
+<div class='about-school'>
+St Buryan Academy
+</div>
+<div class='about-location'>
+Cornwall
+</div>
+</div>
+<blockquote>
+""It’s such an easy way to get messages to our parents - ParentMessage automatically notifies parents about new posts. The feedback facility saves loads of time spent emailing back and forth with parents""
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+<a class='carousel-control left' data-slide='prev' href='#pm-carousel'>&lsaquo;</a>
+<a class='carousel-control right' data-slide='next' href='#pm-carousel'>&rsaquo;</a>
+<ol class='carousel-indicators'>
+<li class='active' data-slide-to='0' data-target='#pm-carousel'></li>
+<li data-slide-to='1' data-target='#pm-carousel'></li>
+</ol>
+</div>
+<div class='carousel slide' data-interval='14333' data-ride='carousel' id='fw-carousel'>
+<div class='carousel-inner'>
+<div class='item active'>
+<div class='about-item about-fw fw-2 item-2'>
+<div class='about-inner'>
+<div class='about-avatar'>
+<img src=""/assets/schoople/about/fw-par-avatar-000a5c36a7dc90a511ca6ede4d11fcb1b5abfeb4386b7b48b937294b67305656.png"" alt=""Fw par avatar"" />
+</div>
+<div class='about-person about-parent'>
+<div class='about-name'>
+Rae Lowe, Business Manager
+</div>
+<div class='about-school'>
+West Newcastle Academy
+</div>
+<div class='about-location'>
+Newcastle upon Tyne
+</div>
+</div>
+<blockquote>
+""Local businesses donated online and we exceeded our target.""
+</blockquote>
+</div>
+</div>
+</div>
+<div class='item'>
+<div class='about-item about-fw fw-3 item-3'>
+<div class='about-inner'>
+<div class='about-avatar'>
+<img src=""/assets/schoople/about/fw-admin-avatar-eedc1655cada1c4ec3edc77d40df7f5e3a3b7037b2952d2b2ebe457cde5d8240.png"" alt=""Fw admin avatar"" />
+</div>
+<div class='about-person about-school-admin'>
+<div class='about-name'>
+James Singh, School Fundraiser
+</div>
+<div class='about-school'>
+William Bellamy Primary School
+</div>
+<div class='about-location'>
+Essex
+</div>
+</div>
+<blockquote>
+""The site had everything we needed to spread the word and we raised an incredible £2,500 in just one term.""
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+<a class='carousel-control left' data-slide='prev' href='#fw-carousel'>&lsaquo;</a>
+<a class='carousel-control right' data-slide='next' href='#fw-carousel'>&rsaquo;</a>
+<ol class='carousel-indicators'>
+<li class='active' data-slide-to='0' data-target='#fw-carousel'></li>
+<li data-slide-to='1' data-target='#fw-carousel'></li>
+</ol>
+</div>
+</header>
+</div>
+<div class='signup'>
+<a class=""button signup-button"" href="""">Register now</a>
+</div>
+</div>
+
+</div>
+
+
+
+<div id='footer' role='footer'>
+<div class='wrap'>
+<div class='info'>
+<div class='column copyright'>
+&copy;
+<a href=""https://schoople.com"">2014 Schoople Ltd</a>
+</div>
+<div class='column'>
+<a target=""_blank"" href=""/terms"">Terms</a>
+</div>
+<div class='column'>
+<a target=""_blank"" href=""/privacy"">Privacy</a>
+</div>
+</div>
+<div class='social'>
+<div class='column'>
+<iframe allowtransparency='true' class='fb' frameborder='0' scrolling='no' src='//www.facebook.com/plugins/like.php?href=http%3A%2F%2Ffacebook.com%2Fschoople&amp;layout=button_count&amp;show_faces=false&amp;send=false&amp;width=100&amp;action=like&amp;colorscheme=light&amp;height=30' style='border:none; overflow:hidden; width:100px; height:30px;'></iframe>
+</div>
+<div class='column chat'>
+<div class='livechat_button' data-id='60b79d6b53'>
+<a href='http://www.livechatinc.com/'>Chat now!</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<script src=""/assets/schoople-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.js""></script>
+<script>
+  var _gaq = _gaq || [];
+  var pluginUrl =  '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+  _gaq.push(
+    ['_setAccount', 'UA-44213397-1'],
+    ['_setDomainName', 'schoople.com'],
+    ['_require', 'inpage_linkid', pluginUrl],
+    ['_trackPageview']
+  );
+  
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<script>
+  var __lc = {};
+  __lc.license = 3750911;
+  
+  (function() {
+    var lc = document.createElement('script'); lc.type = 'text/javascript'; lc.async = true;
+    lc.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'cdn.livechatinc.com/tracking.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(lc, s);
+  })();
+</script>
+
+<script>
+  var __lc = {};
+  __lc.license = 3750911;
+  
+  (function() {
+    var lc = document.createElement('script'); lc.type = 'text/javascript'; lc.async = true;
+    lc.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'cdn.livechatinc.com/tracking.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(lc, s);
+  })();
+</script>
+</body>
+</html>
+
+0
+
+",,nginx/1.10.3 (Ubuntu),text/html,,map[],,[],[54.229.140.24],[Nginx:1.10.3 Ruby Ruby on Rails Ubuntu],[]

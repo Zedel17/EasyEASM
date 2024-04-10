@@ -8,8 +8,9 @@ import (
 
 	"github.com/g0ldencybersec/EasyEASM/pkg/active"
 	"github.com/g0ldencybersec/EasyEASM/pkg/configparser"
+	"github.com/g0ldencybersec/EasyEASM/pkg/flags"
 	"github.com/g0ldencybersec/EasyEASM/pkg/passive"
-	"github.com/g0ldencybersec/EasyEASM/pkg/passive/flags"
+	"github.com/g0ldencybersec/EasyEASM/pkg/periodic"
 	"github.com/g0ldencybersec/EasyEASM/pkg/utils"
 )
 
@@ -22,10 +23,29 @@ func main() {
 	fmt.Println(banner)
 
 	//check if flag '-i' is provided when running the tool, if yes return the interactive parameter
-	flag := flags.ParsingFlags()
+	flag, value := flags.ParsingFlags()
 
 	// parse the configuration file
 	cfg := configparser.ParseConfig(flag)
+
+	//check if values for threads and ratelimit are provided as flags
+	//standard value for ratelimit is 150 (nuclei standard)
+
+	if len(value) == 2 {
+		if value[0] > -1 {
+			//set the ratelimit for the request per second with the nuclei tool
+			//change the thread config for this run only, not for the config file
+			cfg.RunConfig.RequestsSeconds = value[0]
+			fmt.Println("Rate Limit setted correctly")
+		}
+		if value[1] > -1 {
+			//change the thread config for this run only, not for the config file
+			cfg.RunConfig.ActiveThreads = value[1]
+			fmt.Println("Thread value setted correctly")
+		}
+	} else {
+		panic("Invalid parse of flag values")
+	}
 
 	// check for previous run file
 	var prevRun bool
@@ -64,7 +84,7 @@ func main() {
 		// run Httpx to check live domains
 		Runner.RunHttpx()
 
-		//start the nuclei func
+		// run the nuclei prompt
 		PromptOptionsNuclei(Runner, cfg, flag)
 
 		// notify about new domains if prevRun is true
@@ -75,6 +95,12 @@ func main() {
 			utils.NotifyNewDomainsDiscord(Runner.Subdomains, cfg.RunConfig.DiscordWebhook)
 			os.Remove("old_EasyEASM.csv")
 		}
+
+		// check if the periodic flag is provided, if yes start the periodic scan
+		if utils.Contains(flag, "periodic") {
+			periodic.PeriodicSet(cfg)
+		}
+
 	} else if strings.ToLower(cfg.RunConfig.RunType) == "complete" {
 		// complete run: passive and active enumeration
 
@@ -120,6 +146,12 @@ func main() {
 			utils.NotifyNewDomainsDiscord(ActiveRunner.Subdomains, cfg.RunConfig.DiscordWebhook)
 			os.Remove("old_EasyEASM.csv")
 		}
+
+		// check if the periodic flag is provided, if yes start the periodic scan
+		if utils.Contains(flag, "periodic") {
+			periodic.PeriodicSet(cfg)
+		}
+
 	} else {
 		// invalid run mode specified
 		panic("Please pick a valid run mode and add it to your config.yml file! You can set runType to either 'fast' or 'complete'")
@@ -127,11 +159,11 @@ func main() {
 }
 
 // func is here and not in nuclei path to avoid having to modify the current structure of the pkg (import cycle with passive)
-// it can probably be adjusted to be make the main cleaner
-func PromptOptionsNuclei(r passive.PassiveRunner, cfg configparser.Config, flags string) {
+// it can probably be adjusted to make the main cleaner
+func PromptOptionsNuclei(r passive.PassiveRunner, cfg configparser.Config, flags []string) {
 
 	//check if interactive mod is active (flag -i)
-	if flags == "interactive" {
+	if utils.Contains(flags, "interactive") {
 		//vuln scan starting
 		reader := bufio.NewReader(os.Stdin)
 		opt, _ := utils.GetInput("Do you want to run the vulnerability scanner? y/n\n", reader)
@@ -151,9 +183,11 @@ func PromptOptionsNuclei(r passive.PassiveRunner, cfg configparser.Config, flags
 				fmt.Println("No previous Nuclei scan data found")
 				prevRunNuclei = false
 			}
-			r.RunNuclei(flags)
 
-			//notify discord and slack if present
+			// start the nuclei func
+			r.RunNuclei(flags, cfg.RunConfig.ActiveThreads, cfg.RunConfig.RequestsSeconds)
+
+			// notify discord and slack if present
 			if prevRunNuclei && strings.Contains(cfg.RunConfig.SlackWebhook, "https") {
 				utils.NotifyVulnSlack(cfg.RunConfig.SlackWebhook)
 				os.Remove("old_EasyEASM.json")
@@ -166,12 +200,12 @@ func PromptOptionsNuclei(r passive.PassiveRunner, cfg configparser.Config, flags
 			return
 
 		default:
-			//invalid option chosen at runtime
+			// invalid option chosen at runtime
 			fmt.Println("Choose a valid option")
 			PromptOptionsNuclei(r, cfg, flags)
 		}
 	} else {
-		//std run without any console prompt
+		// std run without any console prompt
 		fmt.Println("Running Nuclei")
 
 		var prevRunNuclei bool
@@ -186,9 +220,11 @@ func PromptOptionsNuclei(r passive.PassiveRunner, cfg configparser.Config, flags
 			fmt.Println("No previous Nuclei scan data found")
 			prevRunNuclei = false
 		}
-		r.RunNuclei(flags)
 
-		//notify discord and slack if presents
+		// run the nuclei func
+		r.RunNuclei(flags, cfg.RunConfig.ActiveThreads, cfg.RunConfig.RequestsSeconds)
+
+		// notify discord and slack if presents
 		if prevRunNuclei && strings.Contains(cfg.RunConfig.SlackWebhook, "https") {
 			utils.NotifyVulnSlack(cfg.RunConfig.SlackWebhook)
 			os.Remove("old_EasyEASM.json")
