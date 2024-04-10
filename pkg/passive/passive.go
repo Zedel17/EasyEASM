@@ -60,6 +60,6 @@ func (r *PassiveRunner) RunHttpx() {
 	httpx.RunHttpx(r.Subdomains)
 }
 
-func (r *PassiveRunner) RunNuclei(flags string) {
-	nuclei.RunNuclei(r.Subdomains, flags)
+func (r *PassiveRunner) RunNuclei(flags []string, threads int, ratelimit int) {
+	nuclei.RunNuclei(r.Subdomains, flags, threads, ratelimit)
 }

@@ -115,8 +115,8 @@ func NotifyNewDomainsDiscord(newDomains []string, discordWebhook string) {
 	NewDomainsToAlert := difference(newDomains, oldDomains)
 	OldDomainsToAlert := difference(oldDomains, newDomains)
 
-	sendToDiscord(discordWebhook, fmt.Sprintf("New live domains found: %v", NewDomainsToAlert))
-	sendToDiscord(discordWebhook, fmt.Sprintf("Domains that were not to be now longer live: %v", OldDomainsToAlert))
+	sendToDiscord(discordWebhook, fmt.Sprintf("**New live domains found:** %v", NewDomainsToAlert))
+	sendToDiscord(discordWebhook, fmt.Sprintf("**Domains that were not to be now longer live:** %v", OldDomainsToAlert))
 }
 
 func difference(slice1, slice2 []string) []string {
@@ -229,6 +229,7 @@ func installGoTool(name string, path string) {
 }
 
 func GetInput(prompt string, r *bufio.Reader) (string, error) {
+	//func to get input from cmd line
 	fmt.Print(prompt)
 	input, err := r.ReadString('\n')
 	if err != nil {
@@ -250,6 +251,19 @@ func CheckJq() {
 	}
 }
 
+type Info struct {
+	//struct to parse the nuclei json output
+	Name      string   `json:"name"`
+	Severity  string   `json:"severity"`
+	Reference []string `json:"reference"`
+}
+
+type Data struct {
+	//struct to parse the nuclei json output
+	Host   string `json:"host"`
+	Inform Info   `json:"info"`
+}
+
 func NotifyVulnDiscord(discordWebhook string) {
 	// Used to parse the nuclei file and notify about vuln
 	// notification contains: host, name of the vulnerability, severity
@@ -262,22 +276,22 @@ func NotifyVulnDiscord(discordWebhook string) {
 	}
 	defer inputFile.Close()
 
-	//structured json of the nuclei output, used only here so declared inside
-	type Info struct {
-		Name     string `json:"name"`
-		Severity string `json:"severity"`
+	//Open the old JSON file
+	oldInputFile, err := os.Open("old_EasyEASM.json")
+	if err != nil {
+		fmt.Println("Error opening JSON file")
+		panic(err)
 	}
-
-	type Data struct {
-		Host   string `json:"host"`
-		Inform Info   `json:"info"`
-	}
+	defer oldInputFile.Close()
 
 	var jsonPayload []Data
+	var oldJsonPayload []Data
 	var vulnerability Data
-	decoder := json.NewDecoder(inputFile)
 
-	//decode the json output from nuclei
+	decoder := json.NewDecoder(inputFile)
+	oldDecoder := json.NewDecoder(oldInputFile)
+
+	//decode the  new json output from nuclei
 	for decoder.More() {
 		err := decoder.Decode(&vulnerability)
 		if err != nil {
@@ -288,13 +302,41 @@ func NotifyVulnDiscord(discordWebhook string) {
 		jsonPayload = append(jsonPayload, vulnerability)
 	}
 
+	jsonPayload = RemoveDup(jsonPayload)
+
+	//decode the old json output from nuclei
+	for oldDecoder.More() {
+		err := oldDecoder.Decode(&vulnerability)
+		if err != nil {
+			panic(err)
+		}
+
+		//append the parametres for each line of the JSON
+		oldJsonPayload = append(oldJsonPayload, vulnerability)
+	}
+
+	newVuln := alreadyPresent(jsonPayload, oldJsonPayload)
+	resolvedVuln := alreadyPresent(oldJsonPayload, jsonPayload)
+
 	//bulking toghether the different vuln to have a single notification
 	var message string
-	message = "List of discovered vulnerabilities:\n"
+
+	message = "**List of active vulnerabilities:**\n"
 	for _, v := range jsonPayload {
 		newMessage := fmt.Sprintf("Host: %v, Name: %v, Severity: %v\n", v.Host, v.Inform.Name, v.Inform.Severity)
 		message += newMessage
 	}
+	message += "\n**List of new discovered vulnerabilities:**\n"
+	for _, v1 := range newVuln {
+		newMessage := fmt.Sprintf("Host: %v, Name: %v, Severity: %v\n", v1.Host, v1.Inform.Name, v1.Inform.Severity)
+		message += newMessage
+	}
+	message += "\n**List of resolved vulnerabilities:**\n"
+	for _, v2 := range resolvedVuln {
+		newMessage := fmt.Sprintf("Host: %v, Name: %v, Severity: %v\n", v2.Host, v2.Inform.Name, v2.Inform.Severity)
+		message += newMessage
+	}
+	message += "\n\n"
 
 	//sending the message to the provided webhook
 	sendToDiscord(discordWebhook, message)
@@ -302,7 +344,7 @@ func NotifyVulnDiscord(discordWebhook string) {
 
 func NotifyVulnSlack(slackWebhook string) {
 	// Used to parse the nuclei file and notify about vuln
-	// notification are based on: host, name of the vulnerability and severity
+	// notification contains: host, name of the vulnerability, severity
 
 	// Open the JSON file
 	inputFile, err := os.Open("EasyEASM.json")
@@ -312,20 +354,21 @@ func NotifyVulnSlack(slackWebhook string) {
 	}
 	defer inputFile.Close()
 
-	//structured json of the nuclei output, used only here so declared inside
-	type Info struct {
-		Name     string `json:"name"`
-		Severity string `json:"severity"`
+	//Open the old JSON file
+	oldInputFile, err := os.Open("old_EasyEASM.json")
+	if err != nil {
+		fmt.Println("Error opening JSON file")
+		panic(err)
 	}
+	defer oldInputFile.Close()
 
-	type Data struct {
-		Host   string `json:"host"`
-		Inform Info   `json:"info"`
-	}
+	//structured json of the nuclei output, used only here so declared inside
 
 	var jsonPayload []Data
+	var oldJsonPayload []Data
 	var vulnerability Data
 	decoder := json.NewDecoder(inputFile)
+	oldDecoder := json.NewDecoder(oldInputFile)
 
 	//decode the json output from nuclei
 	for decoder.More() {
@@ -338,17 +381,44 @@ func NotifyVulnSlack(slackWebhook string) {
 		jsonPayload = append(jsonPayload, vulnerability)
 	}
 
+	jsonPayload = RemoveDup(jsonPayload)
+
+	//decode the old json output from nuclei
+	for oldDecoder.More() {
+		err := oldDecoder.Decode(&vulnerability)
+		if err != nil {
+			panic(err)
+		}
+
+		//append the parametres for each line of the JSON
+		oldJsonPayload = append(oldJsonPayload, vulnerability)
+	}
+
+	newVuln := alreadyPresent(jsonPayload, oldJsonPayload)
+	resolvedVuln := alreadyPresent(oldJsonPayload, jsonPayload)
+
 	//bulking toghether the different vuln to have a single notification
 	//notify the host, name and severity of the vulnerability
 	var message string
-	message = "List of discovered vulnerabilities:\n"
+
+	message = "**List of active vulnerabilities:**\n"
 	for _, v := range jsonPayload {
 		newMessage := fmt.Sprintf("Host: %v, Name: %v, Severity: %v\n", v.Host, v.Inform.Name, v.Inform.Severity)
 		message += newMessage
 	}
-
+	message += "\n**List of new discovered vulnerabilities:**\n"
+	for _, v1 := range newVuln {
+		newMessage := fmt.Sprintf("Host: %v, Name: %v, Severity: %v\n", v1.Host, v1.Inform.Name, v1.Inform.Severity)
+		message += newMessage
+	}
+	message += "\n**List of resolved vulnerabilities:**\n"
+	for _, v2 := range resolvedVuln {
+		newMessage := fmt.Sprintf("Host: %v, Name: %v, Severity: %v\n", v2.Host, v2.Inform.Name, v2.Inform.Severity)
+		message += newMessage
+	}
+	message += "\n\n"
 	//sending the message to the provided webhook
-	sendToDiscord(slackWebhook, message)
+	sendToSlack(slackWebhook, message)
 }
 
 func ValidDomain(domain string) bool {
@@ -358,5 +428,71 @@ func ValidDomain(domain string) bool {
 
 	//retrun a boolean to make the check quick in the configparser
 	return regex.MatchString(domain)
+}
 
+func alreadyPresent(newVuln []Data, oldVuln []Data) []Data {
+	//func to check unique elements between two []Data
+	encountered := map[string]bool{}
+	unique := []Data{}
+
+	// Create a map for quick lookup of elements in oldVuln
+	data2Map := make(map[string]bool)
+	for _, v := range oldVuln {
+		var message string
+		for _, x := range v.Inform.Reference {
+			message += x
+		}
+
+		key := fmt.Sprintf("%v %v %v", v.Host, v.Inform.Name, message)
+		data2Map[key] = true
+	}
+
+	// Check for duplicates in newVuln
+	for _, v := range newVuln {
+		var message string
+		for _, x := range v.Inform.Reference {
+			message += x
+		}
+
+		key := fmt.Sprintf("%v %v %v", v.Host, v.Inform.Name, message)
+
+		if !data2Map[key] && !encountered[key] {
+			unique = append(unique, v)
+			encountered[key] = true
+		}
+	}
+
+	//return only the items present in newVuln and not in oldVuln
+	return unique
+}
+
+func RemoveDup(vuln []Data) []Data {
+	//remove duplicates from a []Data
+	encountered := map[string]bool{}
+	unique := []Data{}
+
+	for _, v := range vuln {
+		var message string
+		for _, x := range v.Inform.Reference {
+			message += x
+		}
+
+		k := fmt.Sprintf("%v %v %v", v.Host, v.Inform.Name, message)
+		if !encountered[k] {
+			unique = append(unique, v)
+			encountered[k] = true
+		}
+	}
+
+	return unique
+}
+
+func Contains(arr []string, str string) bool {
+	//quick func to check if a string is present in a []string
+	for _, v := range arr {
+		if v == str {
+			return true
+		}
+	}
+	return false
 }

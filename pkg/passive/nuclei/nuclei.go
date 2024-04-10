@@ -5,16 +5,17 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"strconv"
 
 	"github.com/g0ldencybersec/EasyEASM/pkg/utils"
 )
 
-func RunNuclei(domains []string, flags string) {
+func RunNuclei(domains []string, flags []string, threads int, ratelimit int) {
 	//run the nuclei tool
 	writeTempFile(domains)
 
 	//run the interactive mode if flag is provided
-	if flags == "interactive" {
+	if utils.Contains(flags, "interactive") {
 		reader := bufio.NewReader(os.Stdin)
 		std, _ := utils.GetInput("Press y if you want to insert template directory, or any other character to run standard\n", reader)
 		switch std {
@@ -25,7 +26,7 @@ func RunNuclei(domains []string, flags string) {
 			if _, err := os.Stat(opt); os.IsNotExist(err) {
 				fmt.Println("DIRECTORY DOES NOT EXISTS -> Running standard config...")
 				//run the nuclei std command
-				cmd := exec.Command("nuclei", "-l", "tempNuclei.txt", "-silent", "-o", "temp.json", "-j", "-exclude-severity", "info", "-exclude-severity", "unknown")
+				cmd := exec.Command("nuclei", "-l", "tempNuclei.txt", "-silent", "-o", "temp.json", "-j", "-exclude-severity", "info", "-exclude-severity", "unknown", "-rl", strconv.Itoa(ratelimit))
 				err := cmd.Run()
 				if err != nil {
 					panic(err)
@@ -33,7 +34,7 @@ func RunNuclei(domains []string, flags string) {
 			} else {
 				//run the nuclei cmd on the selected list of templetes
 				fmt.Println("Running found template lists...")
-				cmd := exec.Command("nuclei", "-l", "tempNuclei.txt", "-silent", "-t", opt, "-o", "temp.json", "-j", "-exclude-severity", "info", "-exclude-severity", "unknown")
+				cmd := exec.Command("nuclei", "-l", "tempNuclei.txt", "-silent", "-t", opt, "-o", "temp.json", "-j", "-exclude-severity", "info", "-exclude-severity", "unknown", "-rl", strconv.Itoa(ratelimit))
 				err := cmd.Run()
 				if err != nil {
 					panic(err)
@@ -42,7 +43,7 @@ func RunNuclei(domains []string, flags string) {
 
 		default:
 			//run the nuclei std command
-			cmd := exec.Command("nuclei", "-l", "tempNuclei.txt", "-silent", "-o", "temp.json", "-j", "-exclude-severity", "info", "-exclude-severity", "unknown")
+			cmd := exec.Command("nuclei", "-l", "tempNuclei.txt", "-silent", "-o", "temp.json", "-j", "-exclude-severity", "info", "-exclude-severity", "unknown", "-rl", strconv.Itoa(ratelimit))
 			err := cmd.Run()
 			if err != nil {
 				panic(err)
@@ -50,7 +51,10 @@ func RunNuclei(domains []string, flags string) {
 		}
 	} else {
 		//run the standard scan with nuclei, on the provided targets
-		cmd := exec.Command("nuclei", "-l", "tempNuclei.txt", "-silent", "-o", "temp.json", "-j", "-exclude-severity", "info", "-exclude-severity", "unknown")
+		//cmd := exec.Command("nuclei", "-l", "tempNuclei.txt", "-silent", "-o", "temp.json", "-j", "-exclude-severity", "info", "-exclude-severity", "unknown")
+
+		//test cmd!
+		cmd := exec.Command("nuclei", "-l", "tempNuclei.txt", "-silent", "-t", "/Users/federicomercurio/golang/templatetest/test", "-o", "temp.json", "-j", "-exclude-severity", "info", "-exclude-severity", "unknown", "-rl", strconv.Itoa(ratelimit))
 		err := cmd.Run()
 		if err != nil {
 			panic(err)

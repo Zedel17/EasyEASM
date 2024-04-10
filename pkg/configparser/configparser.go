@@ -13,16 +13,18 @@ import (
 
 type Config struct {
 	RunConfig struct {
-		Domains        []string `yaml:"domains"`
-		SlackWebhook   string   `yaml:"slack"`
-		DiscordWebhook string   `yaml:"discord"`
-		RunType        string   `yaml:"runType"`
-		ActiveWordlist string   `yaml:"activeWordList"`
-		ActiveThreads  int      `yaml:"activeThreads"`
+		Domains         []string `yaml:"domains"`
+		SlackWebhook    string   `yaml:"slack"`
+		DiscordWebhook  string   `yaml:"discord"`
+		RunType         string   `yaml:"runType"`
+		ActiveWordlist  string   `yaml:"activeWordList"`
+		ActiveThreads   int      `yaml:"activeThreads"`
+		RequestsSeconds int      `yaml:"requestsSecond"`
+		PeriodicDays    int      `yaml:"periodicDays"`
 	} `yaml:"runConfig"`
 }
 
-func ParseConfig(flags string) Config {
+func ParseConfig(flags []string) Config {
 	// Read file data
 	data, err := os.ReadFile("config.yml")
 	if err != nil {
@@ -39,7 +41,7 @@ func ParseConfig(flags string) Config {
 	}
 
 	//runtime config modification if flag -i is provided
-	if flags == "interactive" {
+	if utils.Contains(flags, "interactive") {
 		reader := bufio.NewReader(os.Stdin)
 		fmt.Println("Do you want to change anything in the config?")
 		opt, _ := utils.GetInput("Press \"y\" to make changes or any characther to keep running\n", reader)
@@ -56,7 +58,7 @@ func PromptConfigChange(config Config) (cfg Config) {
 	fmt.Println("Choose an option or press any other character to run without anymore changes")
 	reader := bufio.NewReader(os.Stdin)
 
-	opt, _ := utils.GetInput("1.Domains - 2.Slack - 3.Discord - 4.Run Type 5.N of Threads\n", reader)
+	opt, _ := utils.GetInput("1.Domains - 2.Slack - 3.Discord - 4.Run Type 5.N of Threads - 6.N Requests per Second\n", reader)
 	switch opt {
 
 	//add domains to the list
@@ -175,6 +177,30 @@ func PromptConfigChange(config Config) (cfg Config) {
 		}
 
 		fmt.Println("Thread number setted correctly")
+		PromptConfigChange(config)
+
+	case "6":
+		opt, _ = utils.GetInput("Insert the number of requests you want to send each second. End by pressing \"Enter\"\n", reader)
+
+		num, err := strconv.Atoi(opt)
+		if err != nil {
+			log.Fatalf("error converting value: %v", err)
+		}
+
+		//set the number back in the config file
+		config.RunConfig.RequestsSeconds = num
+		yamlData, err := yaml.Marshal(config)
+		if err != nil {
+			log.Fatalf("error marshalling YAML: %v", err)
+		}
+
+		// Write modified data back to YAML file
+		err = os.WriteFile("config.yml", yamlData, 0644)
+		if err != nil {
+			log.Fatalf("error writing YAML file: %v", err)
+		}
+
+		fmt.Println("Requests number setted correctly")
 		PromptConfigChange(config)
 
 	default:
